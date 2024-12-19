@@ -181,5 +181,46 @@ Daha sonra terminalde bu dosyanın olduğu dizine gidip komutumu yazıyorum.
 
 `docker container run —-env-file ./env.list ubuntu`
 
+### **Docker Image Oluşturma:**
 
+**FROM imaj:tag**  
+
+Oluşturulacak imajın hangi imajdan oluşturulacağını belirten talimat:
+
+Örnek: FROM ubuntu:18.04
+
+**RUN**
+
+Image oluşturulurken, shellde bir komut çalıştırmak istersek bu talimat kullanılır. 
+
+**WORKDIR klasor_path**
+
+Normalde terminalde cd ile belirli bir path’e gitme işlemimizi yapmaya yarar. cd’den farklı olarak eğer o path yoksa oluşturur.
+
+Örnek: WORKDIR /usr/src/app   
+
+**COPY kaynak hedef**
+
+Imaj içine dosya veya klasor kopyalamak için kullanılır.
+
+Örnek: COPY /source /user/src/app 
+
+**CMD** 
+
+İmajdan container yaratıldığı zaman varsayılan olarak çalıştırmasını istediğimiz komutu CMD ile belirleriz.
+
+Örnek: CMD java merhaba
+
+**EXPOSE**
+
+İmajdan oluşturulucak containerların hangi portlar üzerinden erişilebileceğini yani hangi portlar üzerinden yayınlanacağını belirtiriz.
+
+Örnek: EXPOSE 80/tcp
+
+### **Örnek Image:**
+![image](https://github.com/user-attachments/assets/8eedd1cc-99a0-4ddc-86cc-4e386fdfa387)
+
+![image](https://github.com/user-attachments/assets/c6126d59-f352-459a-b7bd-8781bb00fc17)
+
+![image](https://github.com/user-attachments/assets/a3946f93-5855-40f6-b3be-acb9487665e4)
 
