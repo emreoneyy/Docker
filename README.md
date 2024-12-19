@@ -8,3 +8,11 @@ Union File System
 Docker, image’lardan bir container oluşturulduğu zaman, yeni bir katman oluşturur (Container Yazılabilir Katman) ve sizin containerlar üzerinde yaptığınız değişiklikler bu katmanda yapılır. Yukarıdaki resimde bulunan üç katman ise containerlarda read only olarak oluşturulur. Bu sayede yapılan değişiklikler sadece o container’ı etkiler.
 
 ![image](https://github.com/user-attachments/assets/80453d27-50d1-4c09-a9b4-723e1b1f9567)
+
+
+
+## Komutlar:
+
+### **help (—help):**
+
+Bu komut sayesinde kullanmak istediğimiz şeyi, nasıl kullanabileceğimizi öğreniriz.
