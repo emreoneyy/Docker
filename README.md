@@ -142,11 +142,13 @@ Gerçek dünyada en çok karşılaşılan problemlerden bir tanesi, ilgili conta
 
 İlk olarak bir sınırlama yapmadan container oluşturup limitini inceleyelim.
 
-![Screenshot 2024-06-11 at 18.11.54.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f13ee484-3168-402f-a558-502fd4392b81/f4cf9aa7-5a62-4f5b-9624-e62d93005fbe/Screenshot_2024-06-11_at_18.11.54.png)
+![image](https://github.com/user-attachments/assets/5c569861-4f1c-4a38-8e45-5627493aeea8)
+
 
 `docker container run -d —-memory={LIMIT} {image}` bu komut sayesinde 100mb bir sınır koyup container oluşturuyorum. Daha sonra `docker stats` komutu ile limiti inceliyorum.
 
-![Screenshot 2024-06-11 at 18.14.49.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f13ee484-3168-402f-a558-502fd4392b81/c5885f44-5da4-4edf-a870-af91cec0ae24/Screenshot_2024-06-11_at_18.14.49.png)
+![image](https://github.com/user-attachments/assets/7730e3aa-beb6-4f37-a163-5c0560725b72)
+
 
 Eğer ki container’ın kullandığı memory tamamen kullanılırsa, o durumlarda sistemin çökmemesi adına swap alanı açabiliriz. Bu şekilde diskten ekstra container’a yer açılır.
 
@@ -179,4 +181,5 @@ Daha sonra terminalde bu dosyanın olduğu dizine gidip komutumu yazıyorum.
 
 `docker container run —-env-file ./env.list ubuntu`
 
+![image](https://github.com/user-attachments/assets/45cf1028-fb8f-4fdc-b975-92ea0e8ab696)
 
