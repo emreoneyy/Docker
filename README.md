@@ -81,4 +81,102 @@ Overlay: Aynı cluster’ın içerisindeki container’ları aynı ağda göster
 - User Defined Bridge Networklar istenilmesi durumunda birden çok ağa bağlanabilirler.
 
 
+# Port Publish:
+
+ Dışarıdan container’a bağlanmak istediğimizde kullanılan yöntemdir. Container’ın portu ile bağlı olduğu host’un portlarının birbirlerine eşlenmesi gibi düşünebiliriz. Bu sayede dışarıdan gelen istekler host’a daha sonrada container’a aktarılır.
+
+`docker container run -p {host_port}:{container_port} {image}`
+
+
+# Docker Logs:
+
+Container Loglarını İnceleme Komutu:
+
+`docker logs {container_name}`
+
+Container Loglarını Detaylı İnceleme Komutu:
+
+`docker logs —details {container_name}`
+
+Container loglarını zaman bazlı inceleme:
+
+`docker logs -t {container_name}`
+
+Belirli bir saate kadar logları inceleme komutu:
+
+`docker logs —until {time} {container_name}`
+
+`docker logs --until 2024-06-07T14:50:03.998817254Z con1`
+
+**Timestamp ile beraber logları yazma komutu:**
+
+`docker logs -t {container_name}`
+
+Belirli bir saatten sonraki logları inceleme komutu:
+
+`docker logs —since {time} {container_name}`
+
+Son n tane log satırını alma komutu:
+
+`docker logs —tail {number_of_line} {container_name}`
+
+`docker logs —tail 3 con1`
+
+Logları canlı olarak takip etme komutu:
+
+`docker logs -f {container_name}`
+
+
+# Docker Stats ve Top:
+
+ `docker top {container_name}` bu komut sayesinde container’ın içine girmeden, o container içinde nelerin çalıştığını görebiliriz.
+
+`docker stats` bu komut sayesinde o sistemdeki tüm containerların CPU,RAM,I/O kullandığını görebiliriz.
+
+`docker stats {container_name}` bu komut sayesinde, containerların ne kadar CPU, RAM I/O kullandığını görebiliriz.
+
+
+# Container CPU ve Memory Limitleri:
+
+Gerçek dünyada en çok karşılaşılan problemlerden bir tanesi, ilgili container’ın kurulu olduğu host üzerinde fazla CPU ve Memory kullanması sonucunda diğer container’lara CPU ve Memory yetmemesidir. Container oluştururken bu sınırlamayı veren bir komut kullanmazsak bu tarz problemler ile karşılaşabiliriz.
+
+İlk olarak bir sınırlama yapmadan container oluşturup limitini inceleyelim.
+
+![Screenshot 2024-06-11 at 18.11.54.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f13ee484-3168-402f-a558-502fd4392b81/f4cf9aa7-5a62-4f5b-9624-e62d93005fbe/Screenshot_2024-06-11_at_18.11.54.png)
+
+`docker container run -d —-memory={LIMIT} {image}` bu komut sayesinde 100mb bir sınır koyup container oluşturuyorum. Daha sonra `docker stats` komutu ile limiti inceliyorum.
+
+![Screenshot 2024-06-11 at 18.14.49.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f13ee484-3168-402f-a558-502fd4392b81/c5885f44-5da4-4edf-a870-af91cec0ae24/Screenshot_2024-06-11_at_18.14.49.png)
+
+Eğer ki container’ın kullandığı memory tamamen kullanılırsa, o durumlarda sistemin çökmemesi adına swap alanı açabiliriz. Bu şekilde diskten ekstra container’a yer açılır.
+
+`docker container run -d —-memory=100m —-memory-swap=200m {image}`
+
+—cpus kullanımı core kullanımı açısından sınırlandırmayı sağlar.
+
+`docker container run -d —-cpus=”1.5” {image}`
+
+`docker container run -d —-cpuset-cpus=”0,3” {image}`
+
+
+# Docker Environment Variables:
+
+`printenv` environment değişkenleri listeler
+
+`export {variable_name}=”{variable_value}”` yeni bir değişken tanımlamızı sağlar.
+
+`echo {$variable_name}` belirli bir değişkenin değerini gösterir.
+
+Container oluştururken env variable oluşturmak:
+
+`docker container run —-env VAR1=deneme1 —-env VAR2=deneme2 {image}`
+
+Bütün değişkenleri bu şekilde tek tek vermek zor olacağı için bunları bir dosyada tutup container’a da aktarabiliriz. Bunun için önce env.list adında bir txt dosyası oluşturuyorum.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f13ee484-3168-402f-a558-502fd4392b81/c174c180-9f91-4799-9096-72e2cbdaa9ca/Untitled.png)
+
+Daha sonra terminalde bu dosyanın olduğu dizine gidip komutumu yazıyorum.
+
+`docker container run —-env-file ./env.list ubuntu`
+
 
