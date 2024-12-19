@@ -181,7 +181,7 @@ Daha sonra terminalde bu dosyanın olduğu dizine gidip komutumu yazıyorum.
 
 `docker container run —-env-file ./env.list ubuntu`
 
-### **Docker Image Oluşturma:**
+# **Docker Image Oluşturma:**
 
 **FROM imaj:tag**  
 
