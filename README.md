@@ -175,11 +175,11 @@ Container oluştururken env variable oluşturmak:
 
 Bütün değişkenleri bu şekilde tek tek vermek zor olacağı için bunları bir dosyada tutup container’a da aktarabiliriz. Bunun için önce env.list adında bir txt dosyası oluşturuyorum.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f13ee484-3168-402f-a558-502fd4392b81/c174c180-9f91-4799-9096-72e2cbdaa9ca/Untitled.png)
+![image](https://github.com/user-attachments/assets/45cf1028-fb8f-4fdc-b975-92ea0e8ab696)
 
 Daha sonra terminalde bu dosyanın olduğu dizine gidip komutumu yazıyorum.
 
 `docker container run —-env-file ./env.list ubuntu`
 
-![image](https://github.com/user-attachments/assets/45cf1028-fb8f-4fdc-b975-92ea0e8ab696)
+
 
